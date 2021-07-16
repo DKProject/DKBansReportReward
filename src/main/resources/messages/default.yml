@@ -1,0 +1,9 @@
+meta:
+  name: 'DKBansReportReward English'
+  module: 'DKBansReportReward'
+  language:
+    name: 'English'
+    localizedName: 'English'
+    code: 'en'
+messages:
+  dkbansreportreward.prefix: '&8» &4DKBansReportReward &8|&f'

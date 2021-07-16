@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.pretronic.dkbans.reportreward</groupId>
+    <artifactId>DKBansReportReward</artifactId>
+    <version>1.0.0.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <plugin.maven.compiler>3.8.1</plugin.maven.compiler>
+        <plugin.maven.shade>3.2.2</plugin.maven.shade>
+        <plugin.maven.deploy>3.0.0-M1</plugin.maven.deploy>
+
+        <!-- Dependency version -->
+        <dependency.pretronic.libraries>1.2.97.238-SNAPSHOT</dependency.pretronic.libraries>
+        <dependency.pretronic.databasequery>1.2.59.86-SNAPSHOT</dependency.pretronic.databasequery>
+
+        <dependency.mcnative.runtime>1.10.22.89-SNAPSHOT</dependency.mcnative.runtime>
+        <dependency.mcnative.api>1.6.17.203-SNAPSHOT</dependency.mcnative.api>
+        <dependency.mcnative.licensing>1.0.2.4-SNAPSHOT</dependency.mcnative.licensing>
+        <dependency.mcnative.buildtool>1.0.0.5</dependency.mcnative.buildtool>
+        <dependency.mcnative.loader>1.7.75.45</dependency.mcnative.loader>
+
+        <dependency.dkbans.api>1.20.3.506-SNAPSHOT</dependency.dkbans.api>
+        <dependency.dkcoins.api>1.18.1.258-SNAPSHOT</dependency.dkcoins.api>
+
+        <!-- Maven plugins -->
+        <plugin.maven.compiler>3.8.1</plugin.maven.compiler>
+        <plugin.maven.source>3.2.1</plugin.maven.source>
+        <plugin.maven.shade>3.2.2</plugin.maven.shade>
+        <plugin.maven.deploy>3.0.0-M1</plugin.maven.deploy>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${plugin.maven.compiler}</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mcnative.buildtool</groupId>
+                <artifactId>mcnative-buildtool-maven</artifactId>
+                <version>1.0.8.15-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>McNative-Build</goal>
+                            <goal>McNative-Package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mcnative-loader-version>${dependency.mcnative.loader}</mcnative-loader-version>
+                    <resource-loader-version>${dependency.pretronic.libraries}</resource-loader-version>
+                    <manifest>
+                        <name>DKBansReportReward</name>
+                        <id>ea6d0f4d-1a8f-4f9b-835a-c17b9169df17</id>
+                        <version>${project.version}</version>
+                        <main>net.pretronic.dkbans.reportreward.DKBansReportRewardPlugin</main>
+                        <website>https://pretronic.net</website>
+                        <author>Pretronic</author>
+                        <messageModule>DKBansReportRewardPlugin</messageModule>
+                        <installMcNative>true</installMcNative>
+                    </manifest>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${plugin.maven.shade}</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>pretronic</id>
+            <url>https://repository.pretronic.net/repository/pretronic/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mcnative.runtime.api</groupId>
+            <artifactId>mcnative-runtime-api</artifactId>
+            <version>${dependency.mcnative.api}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mcnative.runtime</groupId>
+            <artifactId>mcnative-runtime-build</artifactId>
+            <version>${dependency.mcnative.runtime}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.pretronic.libraries</groupId>
+            <artifactId>pretroniclibraries-utility</artifactId>
+            <version>${dependency.pretronic.libraries}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.pretronic.libraries</groupId>
+            <artifactId>pretroniclibraries-injection</artifactId>
+            <version>${dependency.pretronic.libraries}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mcnative.licensing</groupId>
+            <artifactId>mcnative-licensing</artifactId>
+            <version>${dependency.mcnative.licensing}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.pretronic.dkbans</groupId>
+            <artifactId>dkbans-api</artifactId>
+            <version>${dependency.dkbans.api}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.pretronic.dkcoins</groupId>
+            <artifactId>dkcoins-api</artifactId>
+            <version>${dependency.dkcoins.api}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
