@@ -6,6 +6,8 @@ import net.pretronic.dkbans.api.player.report.PlayerReportEntry;
 import net.pretronic.dkbans.api.player.report.ReportState;
 import net.pretronic.dkbans.reportreward.config.DKBansReportRewardConfig;
 import net.pretronic.dkbans.reportreward.config.Messages;
+import net.pretronic.dkcoins.api.DKCoins;
+import net.pretronic.dkcoins.api.currency.Currency;
 import net.pretronic.dkcoins.api.user.DKCoinsUser;
 import net.pretronic.libraries.event.Listener;
 import net.pretronic.libraries.message.bml.variable.VariableSet;
@@ -47,8 +49,11 @@ public class DKBansListener {
                 double rate = ((double)successful)/((double)count);
                 double reward = DKBansReportRewardConfig.REWARD_MIN + ((DKBansReportRewardConfig.REWARD_MAX-DKBansReportRewardConfig.REWARD_MIN) * rate)  ;
 
+                Currency currency = DKCoins.getInstance().getCurrencyManager().getCurrency(DKBansReportRewardConfig.TRANSACTION_CURRENCY);
+                if(currency == null) throw new IllegalArgumentException("Transaction currency "+DKBansReportRewardConfig.TRANSACTION_CURRENCY+" was not found");
+
                 DKCoinsUser user = reporter.getAs(DKCoinsUser.class);
-                user.getDefaultAccount().getCredit(DKBansReportRewardConfig.CURRENCY)
+                user.getDefaultAccount().getCredit(currency)
                         .addAmount(null
                                 ,reward
                                 ,DKBansReportRewardConfig.TRANSACTION_REASON.replace("{player}",event.getReport().getPlayer().getName())
