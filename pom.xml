@@ -67,7 +67,7 @@
                         <main>net.pretronic.dkbans.reportreward.DKBansReportRewardPlugin</main>
                         <website>https://pretronic.net</website>
                         <author>Pretronic</author>
-                        <messageModule>DKBansReportRewardPlugin</messageModule>
+                        <messageModule>DKBansReportReward</messageModule>
                         <installMcNative>true</installMcNative>
                     </manifest>
                 </configuration>
