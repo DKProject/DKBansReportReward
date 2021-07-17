@@ -9,6 +9,7 @@ import net.pretronic.dkbans.reportreward.config.Messages;
 import net.pretronic.dkcoins.api.DKCoins;
 import net.pretronic.dkcoins.api.currency.Currency;
 import net.pretronic.dkcoins.api.user.DKCoinsUser;
+import net.pretronic.libraries.event.EventPriority;
 import net.pretronic.libraries.event.Listener;
 import net.pretronic.libraries.message.bml.variable.VariableSet;
 import org.mcnative.runtime.api.McNative;
@@ -30,7 +31,7 @@ public class DKBansListener {
         reporter.setSetting("DKBansReportReward","report.count",count);
     }
 
-    @Listener
+    @Listener(priority = EventPriority.HIGHEST)
     public void onDKBansReportStateChanged(DKBansReportStateChangedEvent event) {
         if(event.getNewState() == ReportState.ACCEPTED) {
             for (PlayerReportEntry entry : event.getReport().getEntries()) {
