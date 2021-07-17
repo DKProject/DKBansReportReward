@@ -5,8 +5,10 @@ import net.pretronic.dkbans.api.event.report.DKBansReportStateChangedEvent;
 import net.pretronic.dkbans.api.player.report.PlayerReportEntry;
 import net.pretronic.dkbans.api.player.report.ReportState;
 import net.pretronic.dkbans.reportreward.config.DKBansReportRewardConfig;
+import net.pretronic.dkbans.reportreward.config.Messages;
 import net.pretronic.dkcoins.api.user.DKCoinsUser;
 import net.pretronic.libraries.event.Listener;
+import net.pretronic.libraries.message.bml.variable.VariableSet;
 import org.mcnative.runtime.api.McNative;
 import org.mcnative.runtime.api.Setting;
 import org.mcnative.runtime.api.player.MinecraftPlayer;
@@ -52,6 +54,11 @@ public class DKBansListener {
                                 ,DKBansReportRewardConfig.TRANSACTION_REASON.replace("{player}",event.getReport().getPlayer().getName())
                                 ,DKBansReportRewardConfig.TRANSACTION_CAUSE
                                 ,new ArrayList<>());
+                if(reporter.isOnline()){
+                    reporter.getAsOnlinePlayer().sendMessage(Messages.REWARD, VariableSet.create()
+                            .add("reward",reward)
+                            .addDescribed("player",event.getReport().getPlayer()));
+                }
             }
         }
     }

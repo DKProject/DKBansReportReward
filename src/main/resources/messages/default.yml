@@ -6,4 +6,4 @@ meta:
     localizedName: 'English'
     code: 'en'
 messages:
-  dkbansreportreward.prefix: '&8» &4DKBansReportReward &8|&f'
+  dkbans.reportReward.reward: '&8» &6DKCoins &8|&f &a+&6{reward}$'
