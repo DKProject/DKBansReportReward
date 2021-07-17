@@ -91,6 +91,13 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>pretronic</id>
+            <url>https://repository.pretronic.net/repository/pretronic/</url>
+        </repository>
+    </distributionManagement>
+
     <repositories>
         <repository>
             <id>pretronic</id>
