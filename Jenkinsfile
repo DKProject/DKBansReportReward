@@ -110,7 +110,7 @@ pipeline {
             when { equals expected: false, actual: SKIP }
             steps {
                 configFileProvider([configFile(fileId: MAVEN_SETTINGS_FILE_ID, variable: 'MAVEN_GLOBAL_SETTINGS')]) {
-                    sh 'mvn -B -gs $MAVEN_GLOBAL_SETTINGS clean deploy'
+                    sh 'mvn -B -gs $MAVEN_GLOBAL_SETTINGS clean build'
                 }
             }
         }
